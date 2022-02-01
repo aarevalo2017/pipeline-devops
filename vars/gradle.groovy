@@ -4,11 +4,13 @@
 	ejecucion.call()
 */
 def call(stages){
-    
+
+    println("*************** gradle ****************")
+
     println("Incoming stages variable : ${stages}")
 
     def stagesList = stages.split(";")
-    
+
     stagesList.each{
         println("Stages enviados ===> ${it}")
     }
