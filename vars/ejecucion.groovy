@@ -27,16 +27,11 @@ def call(){
                 steps {
                     script{
                          if(params.compileTool == 'maven') {
-                            //compilar maven
-                            //def executor = load "maven.groovy"
-                            //executor.call()
                             maven.call(params.stages);
                         } else {
-                            //compilar gradle
-                            //def executor = load "gradle.groovy"
-                            //executor.call()
                             gradle.call(params.stages)
-                        }                    }
+                        }                    
+                    }
                 }
             }
         }
