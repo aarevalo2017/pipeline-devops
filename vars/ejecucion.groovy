@@ -27,7 +27,7 @@ def call(){
                     script{
                         //def ejecucion = load "${params.compileTool}.groovy"
                         //ejecucion.call()
-                        ${params.compileTool}.call()
+                        params.compileTool.call()
                     }
                 }
             }
