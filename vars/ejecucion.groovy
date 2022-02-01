@@ -26,7 +26,7 @@ def call(){
             stage("Pipeline"){
                 steps {
                     script{
-                        "${params.compileTool}".call(params.stages)
+                        "${params.compileTool}."call(params.stages)
                         // if(params.compileTool == 'maven') {
                         //     maven.call(params.stages);
                         // } else {
