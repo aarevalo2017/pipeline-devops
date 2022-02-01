@@ -20,6 +20,7 @@ def call(){
                 choices: ['maven', 'gradle'],
                 description: 'Seleccione herramienta de compilacion'
             )
+            text description: 'Enviar los stages separados por ";"... Vacío si desea ejecutar todos los stages', name: 'stages'
         }
         stages {
             stage("Pipeline"){
@@ -29,12 +30,12 @@ def call(){
                             //compilar maven
                             //def executor = load "maven.groovy"
                             //executor.call()
-                            maven.call();
+                            maven.call(params.stages);
                         } else {
                             //compilar gradle
                             //def executor = load "gradle.groovy"
                             //executor.call()
-                            gradle.call()
+                            gradle.call(params.stages)
                         }                    }
                 }
             }
