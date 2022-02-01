@@ -10,20 +10,31 @@ def call(stages){
     stagesList.each{
         println("Stages enviados ===> ${it}")
     }
+}
 
+def build(){
     stage("Paso 1: Build && Test"){
         sh "gradle clean build"
     }
+}
+
+def sonar(){
     stage("Paso 2: Sonar - Análisis Estático"){
         sh "echo 'Análisis Estático!'"
         withSonarQubeEnv('sonarqube') {
             sh './gradlew sonarqube -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build'
         }
     }
+}
+
+def curl_springboot(){
     stage("Paso 3: Curl Springboot Gradle sleep 20"){
         sh "gradle bootRun&"
         sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
     }
+}
+
+def nexus(){
     stage("Paso 4: Subir Nexus"){
         nexusPublisher nexusInstanceId: 'nexus',
         nexusRepositoryId: 'devops-usach-nexus',
@@ -44,6 +55,9 @@ def call(stages){
             ]
         ]
     }
+}
+
+def nexusTest(){
     stage("Paso 5: Descargar Nexus"){
         sh ' curl -X GET -u $NEXUS_USERNAME:$NEXUS_PASSWORD "http://nexus:8081/repository/devops-usach-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar" -O'
     }

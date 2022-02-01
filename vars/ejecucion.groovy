@@ -26,11 +26,12 @@ def call(){
             stage("Pipeline"){
                 steps {
                     script{
-                         if(params.compileTool == 'maven') {
-                            maven.call(params.stages);
-                        } else {
-                            gradle.call(params.stages)
-                        }                    
+                        "${params.compileTool}".call(param.stages)
+                        // if(params.compileTool == 'maven') {
+                        //     maven.call(params.stages);
+                        // } else {
+                        //     gradle.call(params.stages)
+                        // }                    
                     }
                 }
             }
