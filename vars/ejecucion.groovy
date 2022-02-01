@@ -25,8 +25,9 @@ def call(){
             stage("Pipeline"){
                 steps {
                     script{
-                        def ejecucion = load "${params.compileTool}.groovy"
-                        ejecucion.call()
+                        //def ejecucion = load "${params.compileTool}.groovy"
+                        //ejecucion.call()
+                        ${params.compileTool}.call()
                     }
                 }
             }
