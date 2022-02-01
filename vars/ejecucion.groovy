@@ -25,10 +25,17 @@ def call(){
             stage("Pipeline"){
                 steps {
                     script{
-                        //def ejecucion = load "${params.compileTool}.groovy"
-                        //ejecucion.call()
-                        params.compileTool.call()
-                    }
+                         if(params.compileTool == 'maven') {
+                            //compilar maven
+                            //def executor = load "maven.groovy"
+                            //executor.call()
+                            maven.call();
+                        } else {
+                            //compilar gradle
+                            //def executor = load "gradle.groovy"
+                            //executor.call()
+                            gradle.call()
+                        }                    }
                 }
             }
         }
