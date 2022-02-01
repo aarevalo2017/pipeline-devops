@@ -5,6 +5,8 @@
 */
 def call(stages){
     
+    println("Incoming stages variable : ${stages}")
+
     def stagesList = stages.split(";")
     
     stagesList.each{
