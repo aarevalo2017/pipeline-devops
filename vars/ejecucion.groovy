@@ -26,6 +26,7 @@ def call(){
             stage("Pipeline"){
                 steps {
                     script{
+                        echo "Database engine is ${BRANCH_NAME}"
                         // "${params.compileTool}.call(${params.stages})"
                         if(params.compileTool == 'maven') {
                             maven.call(params.stages)
