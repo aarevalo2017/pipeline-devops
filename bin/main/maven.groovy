@@ -93,14 +93,14 @@ def stageUploadNexus() {
                 mavenAssetList: [
                     [classifier: '',
                     extension: 'jar',
-                    filePath: "build/DevOpsUsach2020-0.1.2.jar"
+                    filePath: "build/DevOpsUsach2020-0.0.1.jar"
                 ]
             ],
                 mavenCoordinate: [
                     artifactId: 'DevOpsUsach2020',
                     groupId: 'com.devopsusach2020',
                     packaging: 'jar',
-                    version: "0.1.2"
+                    version: "0.0.1"
                 ]
             ]
         ]
@@ -111,7 +111,7 @@ def stageDownloadNexus(){
     stage("${env.DESCRIPTION_STAGE}"){
       env.STAGE = "download_nexus - ${env.DESCRIPTION_STAGE}"
       sh "echo  ${env.STAGE}"
-      sh "curl -X GET -u $NEXUS_USERNAME:$NEXUS_PASSWORD 'http://nexus:8081/repository/devops-laboratorio/com/devopsusach2020/DevOpsUsach2020/0.1.2/DevOpsUsach2020-0.1.2.jar' -O"
+      sh "curl -X GET -u $NEXUS_USERNAME:$NEXUS_PASSWORD 'http://nexus:8081/repository/devops-laboratorio/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar' -O"
     }
 }
 
@@ -120,7 +120,7 @@ def stageRunJar(){
     stage("${env.DESCRIPTION_STAGE}"){
       env.STAGE = "run_jar - ${env.DESCRIPTION_STAGE}"
       sh "echo  ${env.STAGE}"
-      sh "nohup java -jar DevOpsUsach2020-0.1.2.jar & >/dev/null"
+      sh "nohup java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null"
   }
 }
 
