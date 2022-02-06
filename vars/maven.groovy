@@ -34,7 +34,7 @@ def executeAllStages(){
     stageTest()
     stageBuild()
     stageSonar()
-    stageUploadNexus()
+    // stageUploadNexus()
   stageDownloadNexus()
     stageRunJar()
   stageCurlJar()
