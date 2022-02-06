@@ -1,7 +1,6 @@
 def call(stages){
   def stagesList = stages.split(";")
   def listStagesOrder = [
-      'git_diff': 'stageGitDiff',
       'download_nexus': 'stageDownloadNexus',
       'run_jar': 'stageRunJar',
       'curl_jar': 'stageCurlJar',
@@ -26,20 +25,9 @@ return this;
 
 def executeAllStages(){
   echo "Ejecutando todos los stages..."
-  stageGitDiff();
   stageDownloadNexus();
   stageRunJar();
   stageCurlJar();
-}
-
-def stageGitDiff(){
-    env.DESCRIPTION_STAGE = "Paso 0: Git Diff"
-    stage("${env.DESCRIPTION_STAGE}"){
-      env.STAGE = "git_diff - ${env.DESCRIPTION_STAGE}"
-      sh "echo  ${env.STAGE}"
-      sh "git diff origin/main"
-      }
-
 }
 
 def stageDownloadNexus(){
@@ -47,7 +35,7 @@ def stageDownloadNexus(){
     stage("${env.DESCRIPTION_STAGE}"){
       env.STAGE = "download_nexus - ${env.DESCRIPTION_STAGE}"
       sh "echo  ${env.STAGE}"
-      sh "curl -X GET -u $NEXUS_USER:$NEXUS_PASSWORD 'http://nexus:8081/repository/devops-laboratorio/com/devopsusach2020/DevOpsUsach2020/${env.POM_VERSION}/DevOpsUsach2020-${env.POM_VERSION}.jar' -O"
+      sh "curl -X GET -u $NEXUS_USERNAME:$NEXUS_PASSWORD 'http://nexus:8081/repository/devops-laboratorio/com/devopsusach2020/DevOpsUsach2020/${env.POM_VERSION}/DevOpsUsach2020-${env.POM_VERSION}.jar' -O"
     }
 }
 
